@@ -31,3 +31,20 @@ spec:
         ports:
         - containerPort: 6379
           protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: redis
+  name: redis
+  namespace: test-env
+spec:
+  ports:
+  - nodePort: 31792
+    port: 6379
+    protocol: TCP
+    targetPort: 6379
+  selector:
+    app: redis
+  type: NodePort
