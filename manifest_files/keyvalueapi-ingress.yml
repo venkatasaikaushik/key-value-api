@@ -1,0 +1,21 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+   name: key-value-api-ingress
+   namespace: test-env
+   labels:
+      app: "key-value-api-ingress"
+   annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /$1
+spec:
+   rules:
+   - host: keyvalueapi.com
+     http:
+        paths:
+        - path: /
+          pathType: Prefix
+          backend:
+             service:
+                name: key-value-api
+                port:
+                   number: 5000

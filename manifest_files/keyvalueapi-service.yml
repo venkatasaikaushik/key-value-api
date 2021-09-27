@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: key-value-api
+  name: key-value-api
+  namespace: test-env
+spec:
+  ports:
+  - nodePort: 32044
+    port: 5000
+    protocol: TCP
+    targetPort: 5000
+  selector:
+    app: key-value-api
+  type: NodePort
